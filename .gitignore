@@ -1,0 +1,11 @@
+# Laravel #
+/vendor
+/node_modules
+/public/storage
+
+.env.*
+
+# IDE #
+.idea
+.DS_STORE
+composer.lock

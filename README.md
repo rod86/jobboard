@@ -35,9 +35,10 @@ Basic job board built with Laravel 5.2
     $ cd ~/homestead/www/jobboard
     ```
     
-- Run these commands to install database schema and sample data.
+- Run these commands to install dependencies and database.
 
     ```
+    $ composer install
     $ php artisan migrate
     $ php artisan db:seed
     ```

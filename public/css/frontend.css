@@ -1,0 +1,44 @@
+/* JOBS LIST */
+.jobs-list .panel .panel-body {
+    padding: 10px;
+}
+.jobs-list .panel h4 {
+    margin: 0 0 5px 0;
+}
+.jobs-list .panel h4 a {
+    color: #333;
+}
+.jobs-list .panel .separator {
+    border-left: 1px solid #cdcdcd;
+    padding: 0 5px;
+    margin-left: 5px;
+}
+.jobs-list .panel p {
+    margin-bottom: 0;
+}
+
+/* JOB VIEW */
+@media (max-width: 768px) {
+    .job-view h1 small {
+        display: block;
+        padding-top: 3px;
+    }
+    .job-view .details dt {
+        float: left;
+        width: 80px;
+    }
+    .job-view #apply-btn {
+        width: 100%;
+        padding: 8px 15px;
+        background-color: #333;
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+    }
+    .job-view #apply-btn a {
+        display: block;
+        width: 100%;
+    }
+}
