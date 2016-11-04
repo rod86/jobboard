@@ -25,9 +25,9 @@ Basic job board built with Laravel 5.2
     192.168.10.10   jobboard.app
     ```
               
-- Setup the environment file copying the **.env** to **.env.example**. Edit the database settings.
+- Setup the environment file copying the **.env.example** to **.env**. Adjust this file settings to your environment settings.
 - Initialize the box doing *vagrant up (with provision)*.
-- Connect via SSH to the virtual machine and go to the project.
+- Connect via SSH to the virtual machine and go to the project root folder.
 
     ```
     $ cd [path to homestead]/Homestead
