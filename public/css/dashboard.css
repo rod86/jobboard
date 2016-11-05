@@ -5,3 +5,18 @@
 #main-container h1.page-header {
     margin-top: 0;
 }
+
+/* TABLE */
+.table > tbody > tr > td {
+    line-height: 2.2em;
+}
+.table form.delete {
+    display: inline;
+    width: auto;
+}
+
+/* FORMS */
+.radio-inline label {
+    font-weight: normal;
+}
+

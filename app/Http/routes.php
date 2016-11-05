@@ -29,12 +29,12 @@ Route::get('/job/{jobId}', [
 Route::group(['prefix' => 'company', 'namespace' => 'Company'], function () {
 
 	Route::get('register', [
-		'uses' => 'ProfileController@getRegister',
+		'uses' => 'RegisterController@getRegister',
 		'as' => 'company.register'
 	]);
 
 	Route::post('register', [
-		'uses' => 'ProfileController@postRegister',
+		'uses' => 'RegisterController@postRegister',
 		'as' => 'company.register'
 	]);
 
@@ -54,13 +54,30 @@ Route::group(['prefix' => 'company', 'namespace' => 'Company'], function () {
 	]);
 
 	Route::group(['middleware' => ['auth:companies']],  function () {
-		Route::get('dashboard', [
-			'uses' => 'LoginController@dashboard',
-			'as' => 'company.dashboard'
+		Route::get('jobs', [
+			'uses' => 'JobsController@index',
+			'as' => 'company.jobs.list'
 		]);
-
-		// jobs crud
-		// applications crud
+		Route::get('jobs/add', [
+			'uses' => 'JobsController@getAddJob',
+			'as' => 'company.jobs.add'
+		]);
+		Route::post('jobs/add', [
+			'uses' => 'JobsController@postAddJob',
+			'as' => 'company.jobs.add'
+		]);
+		Route::get('jobs/edit/{id}', [
+			'uses' => 'JobsController@getEditJob',
+			'as' => 'company.jobs.edit'
+		]);
+		Route::post('jobs/edit/{id}', [
+			'uses' => 'JobsController@postEditJob',
+			'as' => 'company.jobs.edit'
+		]);
+		Route::delete('jobs/delete/{id}', [
+			'uses' => 'JobsController@deleteJob',
+			'as' => 'company.jobs.delete'
+		]);
 	});
 });
 

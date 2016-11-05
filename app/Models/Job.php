@@ -13,4 +13,9 @@ class Job extends Model
 	{
 		return $this->belongsTo('App\Models\Company');
 	}
+
+	public static function types()
+	{
+		return [self::TYPE_CONTRACT, self::TYPE_PERMANENT];
+	}
 }

@@ -23,7 +23,7 @@ class LoginController extends Controller
 	    $credentials = ['email' => $request['email'], 'password' => $request['password']];
 
 	    if ($this->guard()->attempt($credentials)) {
-		    return redirect()->intended(route('company.dashboard'));
+		    return redirect()->intended(route('company.jobs.list'));
 	    } else {
 			return redirect()->route('company.login')->with(['error' => 'Invalid email and/or password.']);
 	    }
@@ -33,11 +33,6 @@ class LoginController extends Controller
     {
     	$this->guard()->logout();
 	    return redirect()->route('home');
-    }
-
-    public function dashboard()
-    {
-		return view('company.login.dashboard');
     }
 
     private function guard()

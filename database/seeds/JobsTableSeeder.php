@@ -30,6 +30,13 @@ class JobsTableSeeder extends Seeder
 		    $job->type = $item['type'];
 		    $job->salary = $item['salary'];
 		    $job->description = 'Lorem ipsum dolor et sit amet ...';
+
+		    if (isset($item['created_at']))
+		    {
+			    $job->created_at = $item['created_at'];
+			    $job->updated_at = $item['created_at'];
+		    }
+
 		    $company->jobs()->save($job);
 	    }
     }
@@ -42,106 +49,161 @@ class JobsTableSeeder extends Seeder
 				'title' => 'NET Developer',
 				'location' => 'Barcelona',
 				'type' => Job::TYPE_CONTRACT,
-				'salary' => '200 €'
+				'salary' => '200€',
+				'created_at' => 1478192400
 			],
 		    [
 			    'company' => 'DEMO inc',
 			    'title' => 'Senior NET Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_CONTRACT,
-			    'salary' => '400 €'
+			    'salary' => '400€',
+			    'created_at' => 1478192700
 		    ],
 		    [
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'Web Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '25000 €'
+			    'salary' => '25000 €',
+			    'created_at' => 1478178300
 		    ],
 		    [
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'SEO Specialist',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '30000 €'
+			    'salary' => '30000€',
+			    'created_at' => 1478185500
 		    ],
 		    [
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'Project Manager',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '30000 €'
+			    'salary' => '30000 €',
+			    'created_at' => 1478185800
 		    ],
 		    [
 			    'company' => 'Purus Inc.',
 			    'title' => 'Junior Python Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '25000 €'
+			    'salary' => '25000€',
+			    'created_at' => 1478167800
 		    ],
 		    [
 			    'company' => 'Purus Inc.',
 			    'title' => 'Senior DBA',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '30000 €'
+			    'salary' => '30000€',
+			    'created_at' => 1478168400
 		    ],
 		    [
 			    'company' => 'Purus Inc.',
 			    'title' => 'DevOps',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '30000 €'
+			    'salary' => '30000 €',
+			    'created_at' => 1478169000
 		    ],
 		    [
 			    'company' => 'Purus Inc.',
 			    'title' => 'Graduate Python Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '20000 €'
+			    'salary' => '20000€',
+			    'created_at' => 1478170800
 		    ],
 		    [
 			    'company' => 'Vitae Aliquam Corporation',
 			    'title' => 'Graduate PHP Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_CONTRACT,
-			    'salary' => '100 €'
+			    'salary' => '100€',
+			    'created_at' => 1478167200
 		    ],
 		    [
 			    'company' => 'Vitae Aliquam Corporation',
 			    'title' => 'Senior PHP Developer with Symfony',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '28000 €'
+			    'salary' => '28000€',
+			    'created_at' => 1477152000
 		    ],
 		    [
 			    'company' => 'Ultrices Foundation',
 			    'title' => 'Drupal Ninja',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_PERMANENT,
-			    'salary' => '35000 €'
+			    'salary' => '35000€',
+			    'created_at' => 1477411200
 		    ],
 		    [
 			    'company' => 'Donec Associates',
 			    'title' => 'Graduate Java Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_CONTRACT,
-			    'salary' => '120 €'
+			    'salary' => '120€',
+			    'created_at' => 1477659600
 		    ],
 		    [
 			    'company' => 'Donec Associates',
 			    'title' => 'Java Developer',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_CONTRACT,
-			    'salary' => '200 €'
+			    'salary' => '200€',
+			    'created_at' => 1477990800
 		    ],
 		    [
 			    'company' => 'Donec Associates',
 			    'title' => 'PHP Backend',
 			    'location' => 'Barcelona',
 			    'type' => Job::TYPE_CONTRACT,
-			    'salary' => '200 €'
+			    'salary' => '200€',
+			    'created_at' => 1478163600
 		    ],
+		    [
+		    	'company' => 'Vehicula Consulting',
+			    'title' => 'Java Developer',
+			    'location' => 'London',
+			    'type' => Job::TYPE_CONTRACT,
+			    'salary' => '£200',
+			    'created_at' => 1478169900
+		    ],
+		    [
+		    	'company' => 'Dooley and Sons',
+			    'title' => 'Python Developers',
+			    'location' => 'London',
+			    'type' => Job::TYPE_PERMANENT,
+			    'salary' => '£30k - £50k',
+			    'created_at' => 1478169000
+		    ],
+		    [
+			    'company' => 'Dooley and Sons',
+			    'title' => 'Frontend Developer',
+			    'location' => 'London',
+			    'type' => Job::TYPE_PERMANENT,
+			    'salary' => '£30k - £50k',
+			    'created_at' => 1478169900
+		    ],
+		    [
+			    'company' => 'Dooley and Sons',
+			    'title' => 'QA',
+			    'location' => 'London',
+			    'type' => Job::TYPE_PERMANENT,
+			    'salary' => '£30k - £40k',
+			    'created_at' => 1478171100
+		    ],
+		    [
+			    'company' => 'Dooley and Sons',
+			    'title' => 'UX Designer',
+			    'location' => 'London',
+			    'type' => Job::TYPE_PERMANENT,
+			    'salary' => '£30k - £50k',
+			    'created_at' => 1478172000
+		    ]
 	    ];
     }
 }

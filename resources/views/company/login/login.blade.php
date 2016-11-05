@@ -3,16 +3,9 @@
 @section('content')
     <h1>Sign In Company</h1>
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger" role="alert">
-            There are some validation errors.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @elseif(Session::has('error'))
+    @include('includes.errors')
+
+    @if(Session::has('error'))
         <div class="alert alert-danger" role="alert">
             {{ Session::get('error') }}
         </div>

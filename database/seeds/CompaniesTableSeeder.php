@@ -55,6 +55,16 @@ class CompaniesTableSeeder extends Seeder
 			    'name' => 'Donec Associates',
 			    'email' => 'ultrices@pellentesque.net',
 			    'password' => 'SdVL87T'
+		    ],
+		    [
+		    	'name' => 'Dooley and Sons',
+			    'email' => 'vel@risusMorbi.net',
+			    'password' => 'ZWS51FQG4DF'
+		    ],
+		    [
+		    	'name' => 'Vehicula Consulting',
+			    'email' => 'cras.convallis@auctor.org',
+			    'password' => 'ORS39EWK3XP'
 		    ]
 	    ];
     }

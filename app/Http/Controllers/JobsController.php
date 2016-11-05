@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Requests;
-//use Illuminate\Http\Request;
-
 use App\Models\Job;
 
 class JobsController extends Controller
@@ -18,10 +15,7 @@ class JobsController extends Controller
 
     public function view($jobId)
     {
-    	$job = Job::find($jobId);
-
-	    if (!$job)
-	    	abort(404);
+    	$job = Job::findOrFail($jobId);
 
     	return view('jobs.view', ['job' => $job]);
     }

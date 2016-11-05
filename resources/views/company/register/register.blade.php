@@ -3,20 +3,7 @@
 @section('content')
     <h1>Register Company</h1>
 
-    @if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        There are some validation errors.
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
+    @include('includes.errors')
 
     <form method="post" action="{{ route('company.register') }}">
         <input type="hidden" name="_token" value="{{ Session::token() }}">
@@ -38,6 +25,8 @@
             <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
         </div>
 
-        <button type="submit" class="btn btn-success">Register</button>
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-success">Register</button>
+        </div>
     </form>
 @endsection
