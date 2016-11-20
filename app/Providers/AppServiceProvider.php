@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('includes.header', 'App\Http\Composers\NavigationComposer@composeMainMenu');
+
+	    view()->composer('layouts.dashboard', 'App\Http\Composers\NavigationComposer@composeCompanyMenu');
     }
 
     /**

@@ -34,24 +34,7 @@
         </div>
 
         <div id="navbar" class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{ route('home') }}">Find a job</a>
-                </li>
-                @if (Auth::guard('companies')->check())
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ route('company.logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                @else
-                    <li><a href="{{ route('company.login') }}">Post a Job</a></li>
-                @endif
-            </ul>
+            {!! $menu_main->render() !!}
         </div>
     </div>
 </nav>
