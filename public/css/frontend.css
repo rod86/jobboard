@@ -17,28 +17,23 @@
     margin-bottom: 0;
 }
 
-/* JOB VIEW */
-@media (max-width: 768px) {
-    .job-view h1 small {
-        display: block;
-        padding-top: 3px;
-    }
-    .job-view .details dt {
-        float: left;
-        width: 80px;
-    }
-    .job-view #apply-btn {
-        width: 100%;
-        padding: 8px 15px;
-        background-color: #333;
+/* COMPANY BOX */
+.company-box .thumbnail {
+    border: none;
+    text-align: center;
+}
 
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 1;
-    }
-    .job-view #apply-btn a {
-        display: block;
-        width: 100%;
-    }
+/* Details list */
+ul.details-list span {
+    float: left;
+    width: 150px;
+    font-weight: bold;
+}
+ul.details-list span i {
+    width: 20px;
+}
+
+/* JOB VIEW */
+.job-view {
+    margin-bottom: 20px;
 }

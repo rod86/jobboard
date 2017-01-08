@@ -18,4 +18,9 @@ class Job extends Model
 	{
 		return [self::TYPE_CONTRACT, self::TYPE_PERMANENT];
 	}
+
+	public function candidates()
+	{
+		return $this->hasMany('App\Models\Candidate', 'job_id');
+	}
 }

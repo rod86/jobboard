@@ -12,6 +12,7 @@
         @endif
     </title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::to('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::to('css/common.css') }}" rel="stylesheet">
     @stack('styles')
 

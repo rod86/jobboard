@@ -12,7 +12,7 @@
                     <div class="col-md-6">{{ $job->company->name }}</div>
                     <div class="col-md-6">{{ $job->location }}</div>
                 </div>
-                <p class="text-muted">Posted on {{ $job->updated_at->format('d/m/Y') }} <span class="separator"></span> 33 applications</p>
+                <p class="text-muted">Posted on {{ $job->updated_at->format('d/m/Y') }} <span class="separator"></span> {{ count($job->candidates) }} applications</p>
             </div>
         </div>
         @endforeach

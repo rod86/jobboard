@@ -6,7 +6,9 @@ class DatabaseSeeder extends Seeder
 {
 	protected $_tables = [
 		'companies',
-		'jobs'
+		'jobs',
+		'company_industries',
+		'company_sizes'
 	];
 
     /**
@@ -18,6 +20,8 @@ class DatabaseSeeder extends Seeder
     {
 	    $this->_truncate();
 
+	    $this->call(CompanyIndustriesTableSeeder::class);
+	    $this->call(CompanySizesTableSeeder::class);
         $this->call(CompaniesTableSeeder::class);
 	    $this->call(JobsTableSeeder::class);
     }

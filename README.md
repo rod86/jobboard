@@ -41,14 +41,8 @@ Basic job board built with Laravel 5.2
     $ composer install
     $ php artisan migrate
     $ php artisan db:seed
-    ```
- 
-    
-## Roadmap
-
-- CRUD for jobs in companies dashboard
-- List applicants in companies dashboard
-- Application form for candidates
-- Edit profile data and change password
+    $ cd public
+    $ ln -s ../storage/app/public storage
+    ```  
 
 

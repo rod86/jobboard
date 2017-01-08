@@ -24,6 +24,15 @@ Route::get('/job/{jobId}', [
 	'uses' => 'JobsController@view',
 	'as' => 'job.view'
 ]);
+Route::get('/viewcompany/{companyId}', [
+	'uses' => 'JobsController@viewCompany',
+	'as' => 'job.viewcompany'
+]);
+Route::post('/job/{jobId}/apply', [
+	'uses' => 'JobsController@applyJob',
+	'as' => 'job.apply'
+]);
+
 
 /* Companies Zone */
 Route::group(['prefix' => 'company', 'namespace' => 'Company'], function () {
@@ -86,10 +95,13 @@ Route::group(['prefix' => 'company', 'namespace' => 'Company'], function () {
 			'uses' => 'ProfileController@getEditProfile',
 			'as' => 'company.profile'
 		]);
-		Route::get('account', [
-			'uses' => 'AccountController@getEditAccount',
-			'as' => 'company.account'
+		Route::post('profile/removeFile', [
+			'uses' => 'ProfileController@deleteFile',
+			'as' => 'company.profile.deleteFile'
+		]);
+		Route::post('profile', [
+			'uses' => 'ProfileController@postEditProfile',
+			'as' => 'company.profile'
 		]);
 	});
 });
-

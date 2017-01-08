@@ -18,4 +18,14 @@ class Company extends Authenticatable
 	{
 		return $this->hasMany('App\Models\Job');
 	}
+
+	public function industry()
+	{
+		return $this->belongsTo('App\Models\CompanyIndustry', 'company_industry_id');
+	}
+
+	public function size()
+	{
+		return $this->belongsTo('App\Models\CompanySize', 'company_size_id');
+	}
 }
