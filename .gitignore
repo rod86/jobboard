@@ -3,7 +3,8 @@
 /node_modules
 /public/storage
 
-.env.*
+.env*
+!.env.example
 
 # IDE #
 .idea
