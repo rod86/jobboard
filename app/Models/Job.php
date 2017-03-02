@@ -23,4 +23,9 @@ class Job extends Model
 	{
 		return $this->hasMany('App\Models\Candidate', 'job_id');
 	}
+
+	public function country()
+	{
+		return $this->belongsTo('App\Models\Country', 'country_id');
+	}
 }

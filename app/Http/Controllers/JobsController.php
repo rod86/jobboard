@@ -6,6 +6,7 @@ use App\Models\Candidate;
 use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Validator;
 
 
 class JobsController extends Controller
@@ -31,46 +32,60 @@ class JobsController extends Controller
 	    return view('jobs.company', ['company' => $company]);
     }
 
-    public function applyJob($jobId, Request $request)
-    {
-	    $this->validate($request, [
-	    	'name' => 'required',
-		    'email' => 'required',
-		    'resume' => 'required|mimes:doc,pdf|max:1000',
-		    'eligibility' => 'required'
-	    ]);
+	public function applyJob($jobId, Request $request)
+	{
+		$validator = Validator::make($request->all(), [
+			'name' => 'required',
+			'email' => 'required',
+			'resume' => 'required|mimes:doc,pdf|max:1000',
+			'eligibility' => 'required'
+		],[
+			'eligibility.required' => 'You must be eligible to work in the role\'s country'
+		]);
 
-	    $email = $request->get('email');
+		if ($validator->fails())
+		{
+			return response()->json([
+				'success' => false,
+				'errors' => $validator->errors()
+			]);
+		}
 
-	    // check if user has applied before (email / job_id)
-	    $entry = Candidate::where('email', $email)
-		    ->where('job_id', $jobId)
-	        ->first();
+		// Check if user has applied the role before
+		$email = $request->get('email');
 
-	    if ($entry) {
-		    return redirect()->route('job.view', ['jobId' => $jobId])
-		                     ->with(['error' => 'You applied this role before.']);
-	    }
+		$entry = Candidate::where('email', $email)
+		                  ->where('job_id', $jobId)
+		                  ->first();
 
-	    // Save CV
-	    $resume = $request->file('resume');
-	    $resumeFileName = '';
-	    if ($resume) {
-		    $destinationPath = storage_path('app/public/resumes');
-		    $resumeFileName = $resume->getClientOriginalName();
-		    $resume->move($destinationPath, $resumeFileName);
-	    }
+		if ($entry) {
+			return response()->json([
+				'success' => false,
+				'errors' => ['You applied this role before']
+			]);
+		}
 
-	    // Add applicant
-	    $candidate = new Candidate();
-	    $candidate->job_id = $jobId;
-	    $candidate->name = $request->get('name');
-	    $candidate->email = $email;
-	    $candidate->phone = $request->get('phone');
+		// Save CV
+		$resume = $request->file('resume');
+		$resumeFileName = '';
+		if ($resume) {
+			$destinationPath = storage_path('app/public/resumes');
+			$resumeFileName = $resume->getClientOriginalName();
+			$resume->move($destinationPath, $resumeFileName);
+		}
+
+		// Add applicant
+		$candidate = new Candidate();
+		$candidate->job_id = $jobId;
+		$candidate->name = $request->get('name');
+		$candidate->email = $email;
+		$candidate->phone = $request->get('phone');
 		$candidate->resume = $resumeFileName;
-	    $candidate->save();
+		$candidate->save();
 
-	    return redirect()->route('job.view', ['jobId' => $jobId])
-	                     ->with(['success' => 'You have applied successfully.']);
-    }
+		return response()->json([
+			'success' => true,
+			'message' => 'Your application has been sent successfully.'
+		]);
+	}
 }

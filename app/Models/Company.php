@@ -28,4 +28,9 @@ class Company extends Authenticatable
 	{
 		return $this->belongsTo('App\Models\CompanySize', 'company_size_id');
 	}
+
+	public function country()
+	{
+		return $this->belongsTo('App\Models\Country', 'country_id');
+	}
 }

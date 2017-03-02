@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use \App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,12 @@ class JobsController extends Controller
     public function getAddJob()
     {
     	$types = Job::types();
+	    $countries = Country::orderBy('name', 'asc')->get();
 
-		return view('company.jobs.add', ['types' => $types]);
+		return view('company.jobs.add', [
+			'types' => $types,
+			'countries' => $countries
+		]);
     }
 
 	public function postAddJob(Request $request)
@@ -33,6 +38,7 @@ class JobsController extends Controller
 		$this->validate($request, [
 			'title' => 'required|max:100',
 			'location' => 'required|max:100',
+			'country' => 'required',
 			'type' => 'required',
 			'description' => 'required'
 		]);
@@ -41,6 +47,7 @@ class JobsController extends Controller
 		$job->company_id = $userId;
 		$job->title = $request['title'];
 		$job->location = $request['location'];
+		$job->country_id = $request['country'];
 		$job->type = $request['type'];
 		$job->salary = $request['salary'];
 		$job->description = $request['description'];
@@ -54,10 +61,12 @@ class JobsController extends Controller
 	{
 		$job = Job::findOrFail($jobId);
 		$types = Job::types();
+		$countries = Country::orderBy('name', 'asc')->get();
 
 		return view('company.jobs.edit', [
 			'job' => $job,
-			'types' => $types
+			'types' => $types,
+			'countries' => $countries
 		]);
 	}
 
@@ -66,6 +75,7 @@ class JobsController extends Controller
 		$this->validate($request, [
 			'title' => 'required|max:100',
 			'location' => 'required|max:100',
+			'country' => 'required',
 			'type' => 'required',
 			'description' => 'required'
 		]);
@@ -73,6 +83,7 @@ class JobsController extends Controller
 		$job = Job::Find($jobId);
 		$job->title = $request['title'];
 		$job->location = $request['location'];
+		$job->country_id = $request['country'];
 		$job->type = $request['type'];
 		$job->salary = $request['salary'];
 		$job->description = $request['description'];

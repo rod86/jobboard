@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Company;
 use \App\Http\Controllers\Controller;
 use App\Models\CompanyIndustry;
 use App\Models\CompanySize;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -18,32 +19,36 @@ class ProfileController extends Controller
 
 	    $companySizes = CompanySize::all();
 	    $companyIndustries = CompanyIndustry::orderBy('title', 'asc')->get();
+	    $countries = Country::orderBy('name', 'asc')->get();
 
         return view('company.profile.edit', [
         	'user' => $user,
 	        'companySizes' => $companySizes,
-	        'companyIndustries' => $companyIndustries
+	        'companyIndustries' => $companyIndustries,
+	        'countries' => $countries
         ]);
     }
 
     public function postEditProfile(Request $request)
     {
-		$this->validate($request, [
+	    $this->validate($request, [
 			'name' => 'required',
 			'logo' => 'mimes:jpeg,jpg,gif,png|max:1000',
 			'company_industry' => 'required',
 			'company_size' => 'required',
-			'website' => 'url'
+			'website' => 'url',
+			'country' => 'required'
 		]);
 
 	    $user = Auth::user();
 
-	    if (!empty($user->logo)) {
-			$this->deleteLogo($user->logo);
-	    }
-
 	    $logo = $request->file('logo');
 	    if ($logo) {
+
+		    if (!empty($user->logo)) {
+			    $this->deleteLogo($user->logo);
+		    }
+
 		    $destinationPath = storage_path('app/public/companies');
 		    $fileName = $logo->getClientOriginalName();
 		    $logo->move($destinationPath, $fileName);
@@ -55,6 +60,7 @@ class ProfileController extends Controller
 	    $user->company_industry_id = $request->get('company_industry');
 	    $user->company_size_id = $request->get('company_size');
 	    $user->website = $request->get('website');
+	    $user->country_id = $request->get('country');
 	    $user->update();
 
 	    return redirect()->route('company.profile')
