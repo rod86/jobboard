@@ -10,7 +10,7 @@
                 <h4><a href="{{ route('job.view', ['jobId'=>$job->id]) }}">{{ $job->title }}</a></h4>
                 <div class="row">
                     <div class="col-md-6">{{ $job->company->name }}</div>
-                    <div class="col-md-6">{{ $job->location }}</div>
+                    <div class="col-md-6">{{ $job->location }}, {{ $job->country->name }}</div>
                 </div>
                 <p class="text-muted">Posted on {{ $job->updated_at->format('d/m/Y') }} <span class="separator"></span> {{ count($job->candidates) }} applications</p>
             </div>

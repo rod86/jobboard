@@ -16,6 +16,7 @@
                     <th>Posted Date</th>
                     <th>Title</th>
                     <th>Location</th>
+                    <th>Country</th>
                     <th>Type</th>
                     <th>Salary</th>
                     <th>Applicants</th>
@@ -28,6 +29,7 @@
                     <td>{{ $job->created_at->format('d/m/Y') }}</td>
                     <td>{{ $job->title }}</td>
                     <td>{{ $job->location }}</td>
+                    <td>{{ $job->country->name }}</td>
                     <td>{{ $job->type }}</td>
                     <td>{{ $job->salary }}</td>
                     <td>0</td>

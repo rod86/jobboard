@@ -3,20 +3,6 @@
 @section('title', $job->title)
 
 @section('content')
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @elseif(Session::has('error'))
-        <div class="alert alert-danger" role="alert">{{ Session::get('error') }}</div>
-    @elseif(Session::has('success'))
-        <div class="alert alert-success" role="alert">{{ Session::get('success') }}</div>
-    @endif
-
     <div class="job-view">
         <h1>{{ $job->title }}</h1>
 
@@ -35,7 +21,7 @@
                         <span>
                             <i class="fa fa-map-marker" aria-hidden="true"></i> Location
                         </span>
-                        {{ $job->location }}
+                        {{ $job->location }}, {{ $job->country->name }}
                     </li>
                     <li>
                         <span>
@@ -59,7 +45,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-application">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-job-application">
                     Apply
                 </button>
             </div>
@@ -67,7 +53,7 @@
     </div>
 
     <!-- Modal Job Application -->
-    <div class="modal fade" id="modal-application" tabindex="-1" role="dialog" aria-labelledby="modalApplicationLabel">
+    <div class="modal fade" id="modal-job-application" tabindex="-1" role="dialog" aria-labelledby="modalApplicationLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="{{ route('job.apply', ['jobId' => $job->id]) }}" method="post" enctype="multipart/form-data" id="job-apply-form" class="form-horizontal">
@@ -77,6 +63,11 @@
                         <h4 class="modal-title" id="modalApplicationLabel">Apply to {{ $job->title }}</h4>
                     </div>
                     <div class="modal-body">
+
+                        <div class="alert alert-danger hidden" role="alert">
+                            Error
+                        </div>
+
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name *</label>
                             <div class="col-sm-10">
@@ -108,7 +99,7 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="eligibility"> I am eligible to work in the the role's country
+                                        <input type="checkbox" name="eligibility"> I am eligible to work in {{ $job->country->name }}.
                                     </label>
                                 </div>
                             </div>
@@ -116,7 +107,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" name="apply" class="btn btn-primary">Apply</button>
                     </div>
                 </form>
             </div>

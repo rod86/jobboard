@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Job;
 use App\Models\Company;
+use App\Models\Country;
 
 class JobsTableSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class JobsTableSeeder extends Seeder
 
 	    foreach ($data as $item) {
 
+		    // company
 	    	$company = Company::where('name', $item['company'])->first();
 
 		    if (!$company) {
@@ -24,9 +26,18 @@ class JobsTableSeeder extends Seeder
 			    continue;
 		    }
 
+		    // country
+		    $country = Country::where('name', $item['country'])->first();
+
+		    if (!$country) {
+			    $this->command->warn('No country entry found for ' . $item['title']);
+			    continue;
+		    }
+
 		    $job = new Job();
 		    $job->title = $item['title'];
 		    $job->location = $item['location'];
+		    $job->country_id = $country->id;
 		    $job->type = $item['type'];
 		    $job->salary = $item['salary'];
 		    $job->description = 'Lorem ipsum dolor et sit amet ...';
@@ -48,6 +59,7 @@ class JobsTableSeeder extends Seeder
 				'company' => 'DEMO inc',
 				'title' => 'NET Developer',
 				'location' => 'Barcelona',
+				'country' => 'Spain',
 				'type' => Job::TYPE_CONTRACT,
 				'salary' => '200€',
 				'created_at' => 1478192400
@@ -56,6 +68,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'DEMO inc',
 			    'title' => 'Senior NET Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '400€',
 			    'created_at' => 1478192700
@@ -64,6 +77,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'Web Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '25000 €',
 			    'created_at' => 1478178300
@@ -72,6 +86,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'SEO Specialist',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '30000€',
 			    'created_at' => 1478185500
@@ -80,6 +95,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'Project Manager',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '30000 €',
 			    'created_at' => 1478185800
@@ -88,6 +104,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Purus Inc.',
 			    'title' => 'Junior Python Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '25000€',
 			    'created_at' => 1478167800
@@ -96,6 +113,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Purus Inc.',
 			    'title' => 'Senior DBA',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '30000€',
 			    'created_at' => 1478168400
@@ -104,6 +122,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Purus Inc.',
 			    'title' => 'DevOps',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '30000 €',
 			    'created_at' => 1478169000
@@ -112,6 +131,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Purus Inc.',
 			    'title' => 'Graduate Python Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '20000€',
 			    'created_at' => 1478170800
@@ -120,6 +140,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Vitae Aliquam Corporation',
 			    'title' => 'Graduate PHP Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '100€',
 			    'created_at' => 1478167200
@@ -128,6 +149,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Vitae Aliquam Corporation',
 			    'title' => 'Senior PHP Developer with Symfony',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '28000€',
 			    'created_at' => 1477152000
@@ -136,6 +158,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Ultrices Foundation',
 			    'title' => 'Drupal Ninja',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '35000€',
 			    'created_at' => 1477411200
@@ -144,6 +167,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Donec Associates',
 			    'title' => 'Graduate Java Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '120€',
 			    'created_at' => 1477659600
@@ -152,6 +176,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Donec Associates',
 			    'title' => 'Java Developer',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '200€',
 			    'created_at' => 1477990800
@@ -160,6 +185,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Donec Associates',
 			    'title' => 'PHP Backend',
 			    'location' => 'Barcelona',
+			    'country' => 'Spain',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '200€',
 			    'created_at' => 1478163600
@@ -168,6 +194,7 @@ class JobsTableSeeder extends Seeder
 		    	'company' => 'Vehicula Consulting',
 			    'title' => 'Java Developer',
 			    'location' => 'London',
+			    'country' => 'United Kingdom',
 			    'type' => Job::TYPE_CONTRACT,
 			    'salary' => '£200',
 			    'created_at' => 1478169900
@@ -176,6 +203,7 @@ class JobsTableSeeder extends Seeder
 		    	'company' => 'Dooley and Sons',
 			    'title' => 'Python Developers',
 			    'location' => 'London',
+			    'country' => 'United Kingdom',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '£30k - £50k',
 			    'created_at' => 1478169000
@@ -184,6 +212,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Dooley and Sons',
 			    'title' => 'Frontend Developer',
 			    'location' => 'London',
+			    'country' => 'United Kingdom',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '£30k - £50k',
 			    'created_at' => 1478169900
@@ -192,6 +221,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Dooley and Sons',
 			    'title' => 'QA',
 			    'location' => 'London',
+			    'country' => 'United Kingdom',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '£30k - £40k',
 			    'created_at' => 1478171100
@@ -200,6 +230,7 @@ class JobsTableSeeder extends Seeder
 			    'company' => 'Dooley and Sons',
 			    'title' => 'UX Designer',
 			    'location' => 'London',
+			    'country' => 'United Kingdom',
 			    'type' => Job::TYPE_PERMANENT,
 			    'salary' => '£30k - £50k',
 			    'created_at' => 1478172000

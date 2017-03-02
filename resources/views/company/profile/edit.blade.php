@@ -39,7 +39,7 @@
         <div class="form-group {{ $errors->has('company_industry') ? 'has-error':'' }}">
             <label for="company_industry">Industry <small>*</small></label>
             <select class="form-control" name="company_industry" id="company_industry">
-                <option>-</option>
+                <option value="">-</option>
                 @foreach($companyIndustries as $industry)
                     <option value="{{ $industry->id }}" {{ old('company_industry', $user->company_industry_id) == $industry->id ? 'selected=selected':'' }}>{{ $industry->title }}</option>
                 @endforeach
@@ -49,7 +49,7 @@
         <div class="form-group {{ $errors->has('company_size') ? 'has-error':'' }}">
             <label for="company_size">Company Size <small>*</small></label>
             <select class="form-control" name="company_size" id="company_size">
-                <option>-</option>
+                <option value="">-</option>
                 @foreach($companySizes as $size)
                     <option value="{{ $size->id }}" {{ old('company_size', $user->company_size_id) == $size->id ?'selected=selected':'' }}>{{ $size->title }}</option>
                 @endforeach
@@ -59,6 +59,16 @@
         <div class="form-group">
             <label for="website">Website</label>
             <input type="text" class="form-control" name="website" id="website" value="{{ old('website', $user->website) }}">
+        </div>
+
+        <div class="form-group {{ $errors->has('country') ? 'has-error':'' }}">
+            <label for="country">Country <small>*</small></label>
+            <select class="form-control" name="country" id="country">
+                <option value="">-</option>
+                @foreach($countries as $country)
+                    <option value="{{ $country->id }}" {{ old('country', $user->country_id) == $country->id ? 'selected=selected':'' }}>{{ $country->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <p>

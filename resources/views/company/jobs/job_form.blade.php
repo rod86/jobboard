@@ -11,6 +11,17 @@
         <label for="location">Location</label>
         <input type="text" class="form-control" name="location" id="location" value="{{ old('location', isset($job->location)?$job->location:'') }}">
     </div>
+
+    <div class="form-group {{ $errors->has('country') ? 'has-error':'' }}">
+        <label for="country">Country <small>*</small></label>
+        <select class="form-control" name="country" id="country">
+            <option value="">-</option>
+            @foreach($countries as $country)
+                <option value="{{ $country->id }}" {{ old('country', isset($job->country_id)?$job->country_id:Auth::user()->country_id) == $country->id ? 'selected=selected':'' }}>{{ $country->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="form-group">
         <label for="password" class="control-label">Type</label>
         <div>

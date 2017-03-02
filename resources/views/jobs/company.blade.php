@@ -14,16 +14,22 @@
         <div class="col-md-6 col-sm-pull-6">
             <ul class="list-unstyled details-list">
                 <li>
-                <span>
-                    <i class="fa fa-industry" aria-hidden="true"></i> Industry
-                </span>
-                    {{ $company->industry->title }}
+                    <span>
+                        <i class="fa fa-industry" aria-hidden="true"></i> Industry
+                    </span>
+                        {{ $company->industry->title }}
+                    </li>
+                <li>
+                    <span>
+                        <i class="fa fa-users" aria-hidden="true"></i> Company Size
+                    </span>
+                        {{ $company->size->title }}
                 </li>
                 <li>
-                <span>
-                    <i class="fa fa-users" aria-hidden="true"></i> Company Size
-                </span>
-                    {{ $company->size->title }}
+                    <span>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> Country
+                    </span>
+                    {{ $company->country->name }}
                 </li>
                 @if ($company->website)
                     <li>
@@ -59,7 +65,7 @@
                             <td>
                                 <a href="{{ route('job.view', ['jobId'=>$job->id]) }}">{{ $job->title }}</a>
                             </td>
-                            <td>{{ $job->location }}</td>
+                            <td>{{ $job->location }}, {{ $job->country->name }}</td>
                             <td>{{ $job->updated_at->format('d/m/Y') }}</td>
                         </tr>
                     @endforeach
