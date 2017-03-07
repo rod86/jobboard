@@ -45,9 +45,9 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-job-application">
+                <a type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-job-application">
                     Apply
-                </button>
+                </a>
             </div>
         </div>
     </div>
