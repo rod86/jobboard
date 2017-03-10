@@ -6,8 +6,10 @@ use App\Models\Candidate;
 use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use \Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Storage;
 
 class JobsController extends Controller
 {
@@ -69,9 +71,8 @@ class JobsController extends Controller
 		$resume = $request->file('resume');
 		$resumeFileName = '';
 		if ($resume) {
-			$destinationPath = storage_path('app/public/resumes');
 			$resumeFileName = $resume->getClientOriginalName();
-			$resume->move($destinationPath, $resumeFileName);
+			Storage::disk('local')->put('public/resumes/' . $resumeFileName, File::get($resume));
 		}
 
 		// Add applicant

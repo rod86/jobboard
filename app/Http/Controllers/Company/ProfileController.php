@@ -9,6 +9,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -42,6 +43,7 @@ class ProfileController extends Controller
 
 	    $user = Auth::user();
 
+		// Upload logo
 	    $logo = $request->file('logo');
 	    if ($logo) {
 
@@ -49,9 +51,8 @@ class ProfileController extends Controller
 			    $this->deleteLogo($user->logo);
 		    }
 
-		    $destinationPath = storage_path('app/public/companies');
 		    $fileName = $logo->getClientOriginalName();
-		    $logo->move($destinationPath, $fileName);
+		    Storage::disk('local')->put('public/companies/' . $fileName, File::get($logo));
 		    $user->logo = $fileName;
 	    }
 
@@ -84,7 +85,6 @@ class ProfileController extends Controller
 
     protected function deleteLogo($filename)
     {
-	    $logoPath = storage_path('app/public/companies') .'/'. $filename;
-	    File::delete($logoPath);
+	    Storage::disk('local')->delete('companies/'. $filename);
     }
 }
