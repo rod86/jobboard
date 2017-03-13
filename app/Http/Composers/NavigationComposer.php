@@ -73,7 +73,6 @@ class NavigationComposer {
 	private function menuCompanyBase(&$menu)
 	{
 		$menu->add(Link::toRoute('company.jobs.list', 'My Jobs'))
-		     ->add(Link::toRoute('company.candidates', 'Candidates'))
 		     ->add(Link::toRoute('company.profile', 'Profile'));
 	}
 }

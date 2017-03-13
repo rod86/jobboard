@@ -9,7 +9,8 @@ class DatabaseSeeder extends Seeder
 		'jobs',
 		'company_industries',
 		'company_sizes',
-		'countries'
+		'countries',
+		'candidates'
 	];
 
     /**
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
 	    $this->call(CompanySizesTableSeeder::class);
         $this->call(CompaniesTableSeeder::class);
 	    $this->call(JobsTableSeeder::class);
+	    $this->call(CandidatesTableSeeder::class);
     }
 
 	protected function _truncate() {

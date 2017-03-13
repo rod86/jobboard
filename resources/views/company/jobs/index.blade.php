@@ -32,12 +32,12 @@
                     <td>{{ $job->country->name }}</td>
                     <td>{{ $job->type }}</td>
                     <td>{{ $job->salary }}</td>
-                    <td>0</td>
+                    <td>{{ $job->candidates->count() }}</td>
                     <td>
                         <a href="{{ route('company.jobs.edit', ['id' => $job->id]) }}" class="btn btn-md btn-default" role="button" title="Edit job">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
-                        <a href="#" class="btn btn-md btn-default" role="button" title="View applicants">
+                        <a href="{{ route('company.candidates', ['jobId' => $job->id]) }}" class="btn btn-md btn-default" role="button" title="View applicants">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </a>
                         <form action="{{ route('company.jobs.delete', ['id'=>$job->id]) }}" method="POST" class="delete">

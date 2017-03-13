@@ -87,7 +87,7 @@ Route::group(['prefix' => 'company', 'namespace' => 'Company'], function () {
 			'uses' => 'JobsController@deleteJob',
 			'as' => 'company.jobs.delete'
 		]);
-		Route::get('candidates', [
+		Route::get('jobs/{jobId}/candidates', [
 			'uses' => 'CandidatesController@index',
 			'as' => 'company.candidates'
 		]);

@@ -74,6 +74,24 @@ class JobsTableSeeder extends Seeder
 			    'created_at' => 1478192700
 		    ],
 		    [
+			    'company' => 'DEMO inc',
+			    'title' => 'Project Manager',
+			    'location' => 'Barcelona',
+			    'country' => 'Spain',
+			    'type' => Job::TYPE_PERMANENT,
+			    'salary' => '3000€',
+			    'created_at' => 1478192800
+		    ],
+		    [
+			    'company' => 'DEMO inc',
+			    'title' => 'UX/UI Designer',
+			    'location' => 'Barcelona',
+			    'country' => 'Spain',
+			    'type' => Job::TYPE_CONTRACT,
+			    'salary' => '600€',
+			    'created_at' => 1478192900
+		    ],
+		    [
 			    'company' => 'Vulputate Ltd',
 			    'title' => 'Web Developer',
 			    'location' => 'Barcelona',
