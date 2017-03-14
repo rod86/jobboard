@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Event;
 use App\Models\Candidate;
 use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 use \Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Events\JobApplicationEvent;
+use Illuminate\Support\Facades\Mail;
 
 class JobsController extends Controller
 {
@@ -83,6 +85,9 @@ class JobsController extends Controller
 		$candidate->phone = $request->get('phone');
 		$candidate->resume = $resumeFileName;
 		$candidate->save();
+
+		// Notify company
+		Event::fire(new JobApplicationEvent($candidate, $candidate->job));
 
 		return response()->json([
 			'success' => true,

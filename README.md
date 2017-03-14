@@ -45,4 +45,5 @@ Basic job board built with Laravel 5.2
     $ ln -s ../storage/app/public storage
     ```  
 
+- This app sends emails via mailtrap. To see emails, setup mailtrap credentials in the environment file.
 
