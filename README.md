@@ -6,15 +6,15 @@ Basic job board built with Laravel 5.2
 ## Install
 
 - Install Virtualbox, Vagrant and Vagrant Manager.
-- Install the [Homestead Box](https://laravel.com/docs/5.2/homestead) for Laravel 5.2.
+- Install the [Laravel Homestead](https://laravel.com/docs/5.6/homestead) vagrant box.
 - clone this repo.
-- Edit the file **~/.homestead/Homestead.yaml**
+- Edit the file **~/.homestead/Homestead.yaml** 
     - Add the folder mapping. 
         - map: ~/homestead/www/jobboard
           to: [Absolute path where you have the cloned repo (Ex. */home/vagrant/jobboard*)]
           
     - Add the site mapping.
-        - map: jobboard.app
+        - map: dev.jobboard.com
           to: [Absolute path where to the public folder where you have the cloned repo (Ex. */home/vagrant/jobboard/public*)]
             
     - Add the database *jobboard* in databases list.
@@ -22,20 +22,20 @@ Basic job board built with Laravel 5.2
 - Edit the your OS hosts file and add:
     
     ```
-    192.168.10.10   jobboard.app
+    192.168.10.10   dev.jobboard.com
     ```
               
 - Setup the environment file copying the **.env.example** to **.env**. Adjust this file settings to your environment settings.
-- Initialize the box doing *vagrant up (with provision)*.
+- Initialize the box doing *vagrant up --provision*.
 - Connect via SSH to the virtual machine and go to the project root folder.
 
     ```
     $ cd [path to homestead]/Homestead
     $ vagrant ssh
-    $ cd ~/homestead/www/jobboard
+    $ cd ~/www/jobboard/
     ```
     
-- Run these commands to install dependencies and database.
+- Run the below commands to install dependencies and database.
 
     ```
     $ composer install
